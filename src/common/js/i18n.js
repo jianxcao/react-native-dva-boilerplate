@@ -3,13 +3,12 @@
 import React from 'react';
 import { Text, I18nManager } from 'react-native';
 import { createIntl, createIntlCache, RawIntlProvider, FormattedMessage, FormattedHTMLMessage } from 'react-intl';
-import * as RNRestart from 'react-native-restart';
+import RNRestart from 'react-native-restart';
 import DateFormat from '@/common/js/dateFormat';
 import en_US from '@/locales/en';
 import arLang from '@/locales/ar';
 import frLang from '@/locales/fr';
 import dateFormatCfg from '@/locales/timeFormat';
-console.log(RNRestart);
 FormattedMessage.defaultProps.tagName = Text;
 // RN 不支持 动态写内容，所以这个标签就是废的，不要用
 FormattedHTMLMessage.defaultProps.tagName = Text;
@@ -22,7 +21,7 @@ const message = {
   fr: frLang,
 };
 const langs = Object.keys(message);
-let locale = global.lang || 'ar';
+let locale = global.lang || 'en';
 // 默认国际站-目前country字段没有用，先保留
 let country = global.country || 'g';
 // 缓存中语言出错,或者国家出错
@@ -72,13 +71,19 @@ Object.defineProperty(global, 'lang', {
     return locale;
   },
   set(lang) {
-    if (langs.find(cur => cur === lang)) {
+    if (langs.find(cur => cur === lang) && locale !== lang) {
       locale = lang;
       intl = createIntlWidthDefault({
         locale,
         messages: message[locale],
       });
       if (global.__i18n__) {
+        if (rtlLang.includes(locale)) {
+          I18nManager.forceRTL(true);
+        } else {
+          I18nManager.forceRTL(false);
+        }
+        RNRestart.Restart();
         global.__i18n__.setState({
           locale: locale,
           intl,
@@ -156,17 +161,6 @@ export class I18n extends React.Component {
   // 初始化语言国家等等
   initDir(prevState = {}) {
     const { locale } = this.state;
-    if (prevState.locale !== locale) {
-      if (rtlLang.includes(locale)) {
-        console.log('setting rtl true');
-        I18nManager.forceRTL(true);
-      } else {
-        console.log('setting rtl false');
-        I18nManager.forceRTL(false);
-      }
-      // RNRestart.Restart();
-      console.log(I18nManager.isRTL, locale);
-    }
   }
   render() {
     const { children } = this.props;
