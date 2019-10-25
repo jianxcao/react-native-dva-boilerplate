@@ -1,0 +1,6 @@
+**/*.md
+**/*.svg
+**/*.ejs
+**/*.html
+packages/media/src/thirdLib
+package.json
