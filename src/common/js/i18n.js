@@ -64,6 +64,12 @@ let intl = createIntlWidthDefault({
   messages: message[locale || 'en'],
 });
 
+if (rtlLang.includes(locale) && !I18nManager.isRTL) {
+  I18nManager.forceRTL(true);
+} else {
+  I18nManager.forceRTL(false);
+}
+
 Object.defineProperty(global, 'lang', {
   enumerable: true,
   configurable: true,
@@ -78,7 +84,7 @@ Object.defineProperty(global, 'lang', {
         messages: message[locale],
       });
       if (global.__i18n__) {
-        if (rtlLang.includes(locale)) {
+        if (rtlLang.includes(locale) && !I18nManager.isRTL) {
           I18nManager.forceRTL(true);
         } else {
           I18nManager.forceRTL(false);
@@ -160,7 +166,7 @@ export class I18n extends React.Component {
   }
   // 初始化语言国家等等
   initDir(prevState = {}) {
-    const { locale } = this.state;
+    // const { locale } = this.state;
   }
   render() {
     const { children } = this.props;
