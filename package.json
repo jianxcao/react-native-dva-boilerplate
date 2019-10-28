@@ -14,7 +14,8 @@
     "react": "16.9.0",
     "react-intl": "^3.4.0",
     "react-native": "0.61.2",
-    "react-native-restart": "0.0.13"
+    "react-native-restart": "0.0.13",
+    "react-native-storage": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
