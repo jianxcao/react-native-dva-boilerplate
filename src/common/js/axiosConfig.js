@@ -1,11 +1,6 @@
 import axios from 'axios';
-import {format} from '../js/i18n';
-import {
-  systemErrCode,
-  timeoutErrCode,
-  cancelErrCode,
-  networkErrCode,
-} from '@/config/constant';
+import { format } from '../js/i18n';
+import { systemErrCode, timeoutErrCode, cancelErrCode, networkErrCode } from '@/config/constant';
 const CancelToken = axios.CancelToken;
 axios.defaults.headers.common.platform = 'android';
 // 所有api都走这个url
@@ -22,7 +17,7 @@ const s1 = /^@.+/;
 const s2 = /^\!.+/;
 
 const detailLockKey = (config, promise) => {
-  const {lockKey} = config;
+  const { lockKey } = config;
   if (!lockKey) {
     return promise;
   }
@@ -43,7 +38,7 @@ const detailLockKey = (config, promise) => {
       },
       () => {
         lockUrl[lockKey] = [];
-      },
+      }
     );
     config.source.cancel();
     return cur[0].promise;
@@ -80,7 +75,7 @@ axios.interceptors.request.use(
   },
   function(error) {
     return Promise.reject(error);
-  },
+  }
 );
 
 axios.interceptors.response.use(
@@ -93,17 +88,14 @@ axios.interceptors.response.use(
       data.statusCode = status;
     }
     if ((status >= 200 && status < 300) || status === 401) {
-      if (
-        !data ||
-        (typeof data === 'string' && data.indexOf('<!DOCTYPE') >= 0)
-      ) {
+      if (!data || (typeof data === 'string' && data.indexOf('<!DOCTYPE') >= 0)) {
         return {
           bizCode: systemErrCode,
           message: systemErrInfo,
         };
       }
       // 返回数据没有bizCode字段认为出错了
-      if (typeof data === 'object' && (!data.bizCode && !data.result)) {
+      if (typeof data === 'object' && !data.bizCode && !data.result) {
         return {
           bizCode: systemErrCode,
           message: systemErrInfo,
@@ -155,7 +147,7 @@ axios.interceptors.response.use(
       bizCode: systemErrCode,
       message: systemErrInfo,
     };
-  },
+  }
 );
 
 const req = axios.Axios.prototype.request;

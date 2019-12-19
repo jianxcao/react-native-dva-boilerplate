@@ -18,7 +18,7 @@ const storage = new RNStorage({
   // 如果storage中没有相应数据，或数据已过期，
   // 则会调用相应的sync方法，无缝返回最新数据。
   // sync方法的具体说明会在后文提到
-  sync: require('你可以另外写一个文件专门处理sync'),
+  sync: null,
 });
 
 export default storage;
