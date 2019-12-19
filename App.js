@@ -7,16 +7,15 @@
  */
 
 import React from 'react';
-import '@/common/js/setting';
-import { I18n } from '@/common/js/i18n.js';
+import { getProvider } from '@/common/js/setting';
+
 import { FormattedMessage } from 'react-intl';
 import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native';
+import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
 
-import { Header, LearnMoreLinks, Colors, DebugInstructions, ReloadInstructions } from 'react-native/Libraries/NewAppScreen';
-
-const App = () => {
+let App = () => {
   return (
-    <I18n>
+    <>
       <StatusBar barStyle='dark-content' />
       <SafeAreaView>
         <ScrollView contentInsetAdjustmentBehavior='automatic' style={styles.scrollView}>
@@ -44,10 +43,9 @@ const App = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </I18n>
+    </>
   );
 };
-
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -89,5 +87,4 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
-
-export default App;
+export default getProvider(<App />);

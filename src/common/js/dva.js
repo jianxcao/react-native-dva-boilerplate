@@ -1,7 +1,7 @@
 import React from 'react';
 import { create } from 'dva-core';
-import { createLoading } from 'dva-loading';
-import { connect } from 'react-redux';
+import createLoading from 'dva-loading';
+import { connect, Provider } from 'react-redux';
 export { connect };
 export default options => {
   if (global.dvaApp) {

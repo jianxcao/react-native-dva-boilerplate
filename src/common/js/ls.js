@@ -1,5 +1,5 @@
 import RNStorage from 'react-native-storage';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage } from '@react-native-community/async-storage';
 
 const storage = new RNStorage({
   // 最大容量，默认值1000条数据循环存储
