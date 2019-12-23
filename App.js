@@ -8,41 +8,35 @@
 
 import React from 'react';
 import { getProvider } from '@/common/js/setting';
-
+import { AppRegistry } from 'react-native';
 import { FormattedMessage } from 'react-intl';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native';
+import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, Toast } from 'react-native';
 import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
 
 let App = () => {
   return (
     <>
-      <StatusBar barStyle='dark-content' />
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior='automatic' style={styles.scrollView}>
-          <Header />
-          <View style={styles.body}>
-            <FormattedMessage id='retry'>
-              {val => (
-                <Text
-                  style={{
-                    borderWidth: 1,
-                    borderStyle: 'solid',
-                    borderColor: '#0f0',
-                    textAlign: 'left',
-                    paddingLeft: 10,
-                  }}
-                >
-                  {val}
-                </Text>
-              )}
-            </FormattedMessage>
-            <Text style={{}}>
-              abc<Text>abc</Text>
-              <Text>abc</Text>
-            </Text>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      <StatusBar backgroundColor='blue' barStyle='dark-content' />
+      <ScrollView contentInsetAdjustmentBehavior='automatic' style={styles.scrollView}>
+        {/* <Header /> */}
+        <View style={styles.body}>
+          <FormattedMessage id='retry'>
+            {val => (
+              <Text
+                style={{
+                  borderWidth: 1,
+                  borderStyle: 'solid',
+                  borderColor: '#0f0',
+                  textAlign: 'left',
+                  paddingLeft: 10,
+                }}
+              >
+                {val}
+              </Text>
+            )}
+          </FormattedMessage>
+        </View>
+      </ScrollView>
     </>
   );
 };
@@ -87,4 +81,5 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
 export default getProvider(<App />);
