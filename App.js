@@ -8,78 +8,11 @@
 
 import React from 'react';
 import { getProvider } from '@/common/js/setting';
-import { AppRegistry } from 'react-native';
-import { FormattedMessage } from 'react-intl';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, Toast } from 'react-native';
-import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
+import router from '@/router';
+import { createAppContainer } from 'react-navigation';
 
 let App = () => {
-  return (
-    <>
-      <StatusBar backgroundColor='blue' barStyle='dark-content' />
-      <ScrollView contentInsetAdjustmentBehavior='automatic' style={styles.scrollView}>
-        {/* <Header /> */}
-        <View style={styles.body}>
-          <FormattedMessage id='retry'>
-            {val => (
-              <Text
-                style={{
-                  borderWidth: 1,
-                  borderStyle: 'solid',
-                  borderColor: '#0f0',
-                  textAlign: 'left',
-                  paddingLeft: 10,
-                }}
-              >
-                {val}
-              </Text>
-            )}
-          </FormattedMessage>
-        </View>
-      </ScrollView>
-    </>
-  );
+  const Router = createAppContainer(router);
+  return <Router />;
 };
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
-
 export default getProvider(<App />);
