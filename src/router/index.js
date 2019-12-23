@@ -1,10 +1,11 @@
 import { createStackNavigator } from 'react-navigation-stack';
+import { createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import HomeScreen from '../pages/home';
 import DetailScreen from '../pages/detail';
 import Login from '../pages/login';
 
-const main = createStackNavigator(
+const main = createBottomTabNavigator(
   {
     Home: {
       screen: HomeScreen,
@@ -18,7 +19,7 @@ const main = createStackNavigator(
   }
 );
 
-export default createBottomTabNavigator(
+export default createSwitchNavigator(
   {
     Main: {
       screen: main,
