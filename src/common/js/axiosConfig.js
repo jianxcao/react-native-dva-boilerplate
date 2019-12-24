@@ -4,7 +4,7 @@ import { systemErrCode, timeoutErrCode, cancelErrCode, networkErrCode } from '@/
 const CancelToken = axios.CancelToken;
 axios.defaults.headers.common.platform = 'android';
 // 所有api都走这个url
-axios.defaults.baseURL = 'https://test.more.buzz/api';
+axios.defaults.baseURL = '';
 axios.defaults.timeout = 30000;
 window.axios = axios;
 
