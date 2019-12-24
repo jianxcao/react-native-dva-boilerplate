@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { getProvider } from '@/common/js/setting';
-import router from '@/router';
+import router from '@/routers';
 import { createAppContainer } from 'react-navigation';
 
 let App = () => {
