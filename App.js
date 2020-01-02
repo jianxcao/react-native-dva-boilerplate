@@ -10,6 +10,7 @@ import React from 'react';
 import { getProvider } from '@/common/js/setting';
 import router from '@/routers';
 import { createAppContainer } from 'react-navigation';
+import 'react-native-gesture-handler';
 
 let App = () => {
   const Router = createAppContainer(router);
